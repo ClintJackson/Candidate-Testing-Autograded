@@ -46,18 +46,34 @@ function askQuestion() {
 }
 
 function gradeQuiz(candidateAnswers) {
-
+  let numCorrect = 0;
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  for (i = 0; i < candidateAnswers.length; i++) {
-    for (j = 0; j < correctAnswers.length; j++) {
+    for (i = 0; i < correctAnswers.length; i++) {
       console.log(`
-      Your answer: ${candidateAnswers[i]}. Correct Answer: ${correctAnswers[j]}`)
-      i++;
+      Your answer: ${candidateAnswers[i]}. Correct Answer: ${correctAnswers[i]}`)
+
+      if (candidateAnswers[i].toLowerCase() == correctAnswers[i].toLowerCase()) {
+        numCorrect += 1;
+        //console.log (numCorrect);
+      }
     }
+
+
+  let grade = (numCorrect / correctAnswers.length) * 100;  //TODO 3.2 use this variable to calculate the candidates score.
+  let resultMessage = "";
+
+  if (grade >= 80) {
+    resultMessage = "Congratulations, you have passed the test!";
+  } else {
+    resultMessage = "You have failed the test.";
   }
 
+  console.log(`
+  ${candidateName}, a grade of 80% or higher is required to pass this test. 
+  Your score is ${grade}%.
+  ${resultMessage} 
+  `);
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
 
 
   return grade;
